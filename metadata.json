@@ -1,0 +1,8 @@
+{
+  "name": "扬州安责险服务管理平台运营端",
+  "description": "服务回访管理模块，包含服务回访记录的查询、回访详情的填写、打分及附件上传等全流程业务处理。",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
