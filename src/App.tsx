@@ -3,8 +3,8 @@ import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { ServiceVisitList } from './components/ServiceVisitList';
 import { ServiceVisitDetail } from './components/ServiceVisitDetail';
-import { DataStatistics } from './components/DataStatistics';
 import { DataOneChart } from './components/DataOneChart';
+import { CarrierDataStatistics } from './components/CarrierDataStatistics';
 import { ApportionmentRuleConfig } from './components/ApportionmentRuleConfig';
 import { WarningReminderCenter } from './components/WarningReminderCenter';
 import { SettlementOrderGenerate } from './components/SettlementOrderGenerate';
@@ -40,8 +40,8 @@ export default function App() {
             <DataOneChart />
           )}
 
-          {activeMenu === '数据统计' && (
-            <DataStatistics />
+          {activeMenu === '保司数据统计概览' && (
+            <CarrierDataStatistics />
           )}
 
           {activeMenu === '服务成果' && (
@@ -112,7 +112,7 @@ export default function App() {
           )}
           
           {activeMenu !== '数据一张图' &&
-           activeMenu !== '数据统计' && 
+           activeMenu !== '保司数据统计概览' && 
            activeMenu !== '服务成果' &&
            activeMenu !== '服务标准配置' &&
            activeMenu !== '事故预防服务费管理' &&

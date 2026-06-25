@@ -333,7 +333,7 @@ export function DataOneChart() {
             }`}
           >
             <CheckCircle className="w-3.5 h-3.5 text-purple-500" />
-            <span>防灾服务统计</span>
+            <span>事故预防服务统计分析</span>
           </button>
         </div>
       </div>
