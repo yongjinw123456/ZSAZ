@@ -9,6 +9,7 @@ import {
   Legend, 
   ResponsiveContainer,
   ComposedChart,
+  LineChart,
   Line,
   PieChart,
   Pie,
@@ -85,12 +86,12 @@ const TREND_DATA = [
   { month: '26年6月', total: 1245, completed: 1182, overdue: 28, rate: 94.9 },
 ];
 
-const SERVICE_TYPE_DATA = [
-  { name: '隐患排查', value: 45 },
-  { name: '安全培训', value: 25 },
-  { name: '应急演练', value: 15 },
-  { name: '安全评估', value: 10 },
-  { name: '其他服务', value: 5 },
+const AGENCY_COMPLETION_DATA = [
+  { name: '华北安全技术', total: 1250, completed: 1180, rate: 94.4 },
+  { name: '安联职业学院', total: 980, completed: 950, rate: 96.9 },
+  { name: '蓝天防汛突击队', total: 850, completed: 820, rate: 96.4 },
+  { name: '扬州地质勘测', total: 650, completed: 610, rate: 93.8 },
+  { name: '正信科技评价所', total: 520, completed: 490, rate: 94.2 },
 ];
 
 const INDUSTRY_DATA = [
@@ -102,12 +103,14 @@ const INDUSTRY_DATA = [
   { name: '其他行业', value: 5 },
 ];
 
-const QUALITY_DATA = [
-  { rating: '5星 (非常满意)', count: 8500 },
-  { rating: '4星 (满意)', count: 2800 },
-  { rating: '3星 (一般)', count: 420 },
-  { rating: '2星 (不满意)', count: 85 },
-  { rating: '1星 (极不满意)', count: 15 },
+const AGENCY_SATISFACTION_TREND_DATA = [
+  { month: '25年12月', '华北安全技术': 4.7, '安联职业学院': 4.8, '蓝天防汛突击队': 4.6 },
+  { month: '26年1月', '华北安全技术': 4.8, '安联职业学院': 4.8, '蓝天防汛突击队': 4.7 },
+  { month: '26年2月', '华北安全技术': 4.7, '安联职业学院': 4.9, '蓝天防汛突击队': 4.7 },
+  { month: '26年3月', '华北安全技术': 4.8, '安联职业学院': 4.8, '蓝天防汛突击队': 4.8 },
+  { month: '26年4月', '华北安全技术': 4.9, '安联职业学院': 4.9, '蓝天防汛突击队': 4.8 },
+  { month: '26年5月', '华北安全技术': 4.8, '安联职业学院': 4.9, '蓝天防汛突击队': 4.9 },
+  { month: '26年6月', '华北安全技术': 4.9, '安联职业学院': 4.9, '蓝天防汛突击队': 4.8 },
 ];
 
 const COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#8B5CF6', '#EC4899', '#64748B'];
@@ -237,41 +240,26 @@ export function CarrierDataStatistics() {
           </div>
         </div>
 
-        {/* Chart 2: 服务类型分布环形图 */}
+        {/* Chart 2: 各机构服务完成情况 */}
         <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col h-[380px]">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">服务类型分布</h3>
-              <p className="text-[10px] text-slate-500">隐患排查、安全培训等服务数量占比</p>
+              <h3 className="text-sm font-bold text-slate-800">各机构服务完成情况</h3>
+              <p className="text-[10px] text-slate-500">主要服务机构的排查完成量及总任务量</p>
             </div>
           </div>
           <div className="flex-1 w-full min-h-0 relative">
             <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={SERVICE_TYPE_DATA}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius="50%"
-                  outerRadius="80%"
-                  paddingAngle={2}
-                  dataKey="value"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                  labelLine={{ stroke: '#cbd5e1', strokeWidth: 1 }}
-                  fontSize={10}
-                >
-                  {SERVICE_TYPE_DATA.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} className="cursor-pointer hover:opacity-80 outline-none" />
-                  ))}
-                </Pie>
-                <Tooltip contentStyle={{ borderRadius: '8px', fontSize: '12px' }} />
-              </PieChart>
+              <BarChart data={AGENCY_COMPLETION_DATA} layout="vertical" margin={{ top: 0, right: 20, left: 20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
+                <XAxis type="number" fontSize={10} stroke="#94a3b8" />
+                <YAxis dataKey="name" type="category" fontSize={10} stroke="#64748b" width={85} tickMargin={8} />
+                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '8px', fontSize: '12px' }} />
+                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                <Bar name="完成量" dataKey="completed" fill="#10B981" radius={[0, 4, 4, 0]} barSize={12} />
+                <Bar name="总任务量" dataKey="total" fill="#e2e8f0" radius={[0, 4, 4, 0]} barSize={12} />
+              </BarChart>
             </ResponsiveContainer>
-            {/* Center text overlay */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <span className="text-[10px] text-slate-400">总服务</span>
-              <span className="text-lg font-bold font-mono text-slate-800">12.4k</span>
-            </div>
           </div>
         </div>
 
@@ -316,31 +304,26 @@ export function CarrierDataStatistics() {
           </div>
         </div>
 
-        {/* Chart 4: 服务质量分布柱状图 */}
+        {/* Chart 4: 服务机构满意度趋势图 */}
         <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col h-[380px]">
           <div className="flex justify-between items-center mb-4">
             <div>
-              <h3 className="text-sm font-bold text-slate-800">服务质量满意度分布</h3>
-              <p className="text-[10px] text-slate-500">工单评价 1-5 分的分布情况</p>
+              <h3 className="text-sm font-bold text-slate-800">各服务机构满意度趋势</h3>
+              <p className="text-[10px] text-slate-500">不同服务机构在每个月的平均服务满意度评分走势</p>
             </div>
           </div>
           <div className="flex-1 w-full min-h-0">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={QUALITY_DATA} layout="vertical" margin={{ top: 0, right: 30, left: 30, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" />
-                <XAxis type="number" fontSize={10} stroke="#94a3b8" />
-                <YAxis dataKey="rating" type="category" fontSize={10} stroke="#64748b" width={80} tickMargin={8} />
-                <Tooltip cursor={{ fill: '#f8fafc' }} contentStyle={{ borderRadius: '8px', fontSize: '12px' }} />
-                <Bar dataKey="count" fill="#10B981" radius={[0, 4, 4, 0]} barSize={20} className="cursor-pointer">
-                  {QUALITY_DATA.map((entry, index) => (
-                    <Cell 
-                      key={`cell-${index}`} 
-                      fill={index >= 3 ? '#ef4444' : index === 2 ? '#f59e0b' : '#10b981'} 
-                      className="hover:opacity-80"
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
+              <LineChart data={AGENCY_SATISFACTION_TREND_DATA} margin={{ top: 10, right: 20, left: -20, bottom: 0 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                <XAxis dataKey="month" fontSize={10} stroke="#94a3b8" tickMargin={8} />
+                <YAxis domain={[4.0, 5.0]} fontSize={10} stroke="#94a3b8" />
+                <Tooltip contentStyle={{ borderRadius: '8px', fontSize: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Legend wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                <Line name="华北安全技术" type="monotone" dataKey="华北安全技术" stroke="#3B82F6" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                <Line name="安联职业学院" type="monotone" dataKey="安联职业学院" stroke="#10B981" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+                <Line name="蓝天防汛突击队" type="monotone" dataKey="蓝天防汛突击队" stroke="#F59E0B" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} />
+              </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
