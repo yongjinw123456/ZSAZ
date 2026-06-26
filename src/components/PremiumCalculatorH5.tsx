@@ -234,8 +234,8 @@ export function PremiumCalculatorH5() {
 
   return (
     <div className="h-full bg-gray-100 flex items-center justify-center overflow-hidden w-full relative">
-      {/* Mobile Simulator Container */}
-      <div className="w-full max-w-[420px] h-full h-max-[850px] bg-gray-50 shadow-2xl relative flex flex-col overflow-hidden sm:rounded-3xl sm:h-[90%] sm:border-8 border-gray-900 shrink-0">
+      {/* H5 Container */}
+      <div className="w-full max-w-[420px] h-full bg-gray-50 shadow-md relative flex flex-col overflow-hidden shrink-0">
         
         {/* Top Nav */}
         <div className="bg-[#2A2B2E] text-white flex items-center justify-center h-12 relative shrink-0">

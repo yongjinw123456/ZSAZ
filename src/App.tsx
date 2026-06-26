@@ -94,7 +94,7 @@ export default function App() {
             </div>
           )}
 
-          {activeMenu === '保费试算 (移动端)' && (
+          {activeMenu === '保费试算 (H5)' && (
             <div className="h-full flex flex-col w-full bg-white relative">
                <PremiumCalculatorH5 />
             </div>
@@ -124,7 +124,7 @@ export default function App() {
            activeMenu !== '支付管理' && 
            activeMenu !== '结算档案' && 
            activeMenu !== '保费试算 (Web端)' && 
-           activeMenu !== '保费试算 (移动端)' && 
+           activeMenu !== '保费试算 (H5)' && 
            activeMenu !== '服务评价' && 
            activeMenu !== '投诉建议' && (
             <div className="flex-1 flex items-center justify-center flex-col gap-4 text-gray-400">

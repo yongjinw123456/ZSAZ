@@ -33,7 +33,7 @@ export function Sidebar({ activeMenu, onMenuClick }: { activeMenu: string, onMen
       developed: true,
       children: [
         { name: "保费试算 (Web端)", developed: true },
-        { name: "保费试算 (移动端)", developed: true },
+        { name: "保费试算 (H5)", developed: true },
       ]
     },
     { 
