@@ -5,6 +5,7 @@ import { ServiceVisitList } from './components/ServiceVisitList';
 import { ServiceVisitDetail } from './components/ServiceVisitDetail';
 import { DataOneChart } from './components/DataOneChart';
 import { CarrierDataStatistics } from './components/CarrierDataStatistics';
+import { ExternalSystemDataInteraction } from './components/ExternalSystemDataInteraction';
 import { ApportionmentRuleConfig } from './components/ApportionmentRuleConfig';
 import { WarningReminderCenter } from './components/WarningReminderCenter';
 import { SettlementOrderGenerate } from './components/SettlementOrderGenerate';
@@ -17,6 +18,7 @@ import { ServiceResults } from './components/ServiceResults';
 import { ServiceStandardConfig } from './components/ServiceStandardConfig';
 import { ServiceFeedback } from './components/ServiceFeedback';
 import { ServiceFeeManagement } from './components/ServiceFeeManagement';
+import { ServiceScope } from './components/ServiceScope';
 import { ServiceVisitRecord } from './types';
 
 export default function App() {
@@ -42,6 +44,14 @@ export default function App() {
 
           {activeMenu === '保司数据统计概览' && (
             <CarrierDataStatistics />
+          )}
+
+          {activeMenu === '外部系统数据交互' && (
+            <ExternalSystemDataInteraction />
+          )}
+
+          {activeMenu === '服务范围' && (
+            <ServiceScope />
           )}
 
           {activeMenu === '服务成果' && (
@@ -113,6 +123,8 @@ export default function App() {
           
           {activeMenu !== '数据一张图' &&
            activeMenu !== '保司数据统计概览' && 
+           activeMenu !== '外部系统数据交互' &&
+           activeMenu !== '服务范围' &&
            activeMenu !== '服务成果' &&
            activeMenu !== '服务标准配置' &&
            activeMenu !== '事故预防服务费管理' &&

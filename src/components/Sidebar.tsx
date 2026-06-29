@@ -1,4 +1,4 @@
-import { MonitorPlay, LayoutDashboard, FileText, Settings, ShieldCheck, Box, User, ChevronDown, ChevronRight, Bell, Calculator, Sliders, Coins, BarChart } from "lucide-react";
+import { MonitorPlay, LayoutDashboard, FileText, Settings, ShieldCheck, Box, User, ChevronDown, ChevronRight, Bell, Calculator, Sliders, Coins, BarChart, Server, Layers } from "lucide-react";
 import { useState } from "react";
 
 export function Sidebar({ activeMenu, onMenuClick }: { activeMenu: string, onMenuClick: (menu: string) => void }) {
@@ -15,6 +15,8 @@ export function Sidebar({ activeMenu, onMenuClick }: { activeMenu: string, onMen
   const allMenus = [
     { name: "数据一张图", icon: <LayoutDashboard className="w-4 h-4 text-amber-500" />, developed: true },
     { name: "保司数据统计概览", icon: <BarChart className="w-4 h-4 text-blue-500" />, developed: true },
+    { name: "外部系统数据交互", icon: <Server className="w-4 h-4 text-teal-600" />, developed: true },
+    { name: "服务范围", icon: <Layers className="w-4 h-4 text-blue-600" />, developed: true },
     { name: "服务成果", icon: <ShieldCheck className="w-4 h-4 text-emerald-600" />, developed: true },
     { name: "服务标准配置", icon: <Sliders className="w-4 h-4 text-indigo-600" />, developed: true },
     { name: "事故预防服务费管理", icon: <Coins className="w-4 h-4 text-amber-600" />, developed: true },
